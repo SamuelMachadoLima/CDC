@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+}
+
+.card{
+    margin: 0 10px;
+}
+
+.form-group{
+    margin-bottom: 8px !important;
+}

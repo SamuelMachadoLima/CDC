@@ -290,4 +290,4 @@ else if(sigla_local == "PA")/*                                                 |
 
     await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
 
-})();
+});

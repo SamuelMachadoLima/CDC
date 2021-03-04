@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de usuário</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <form action="criaUsuario" method="POST" class="w-100 d-flex">
+
+            <div class="card text-center mt-4 w-50 h-100">
+                <div class="card-header">
+                    LOGIN AMPRO
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="user">Email</label>
+                        <input type="email" class="form-control" id="user" name="user"
+                            placeholder="seu_usuario@blossomconsult.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Senha</label>
+                        <input type="password" class="form-control" required id="pass" name="pass" placeholder="******">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-center mt-4 w-50">
+                <div class="card-header">
+                    CRIAR USUÁRIO
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="solicitador" class="col-sm-4 col-form-label">Solicitador</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" required id="solicitador" name="solicitador" placeholder="Tamara Cançado">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="autodesk" class="col-sm-4 col-form-label">Autodesk</label>
+                        <div class="d-flex col-sm-8">
+                            <select id="autodesk" class="form-control col-sm-3">
+                                <option selected value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                            <input type="text" class="form-control col-sm-9" id="licença_autodesk" name="autodesk"
+                                placeholder="Nome da Licença">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="data_ativacao" class="col-sm-4 col-form-label">Data de ativação</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" required id="data_ativacao" name="data_ativacao" placeholder="dia/mês/ano">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nome_usuario" class="col-sm-4 col-form-label">Nome do Usuário</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" required id="nome_usuario" name="nome_usuario">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email_pessoal" class="col-sm-4 col-form-label">E-mail Pessoal</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" required id="email_pessoal" name="email_pessoal" placeholder="nome@gmail.com">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="telefone" class="col-sm-4 col-form-label">Telefone</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" required id="telefone" name="telefone">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="licença_microsoft" class="col-sm-4 col-form-label">Licença Microsoft</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" required id="licença_microsoft" name="licenca_microsoft">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="outros_softwares" class="col-sm-4 col-form-label">Outros Softwares</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" required id="outros_softwares" name="outros_softwares">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email_blossom" class="col-sm-4 col-form-label">E-mail Blossom</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" required id="email_blossom" name="email_blossom"
+                                placeholder="usuario@blossomconsult.com">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tipo_equipamento" class="col-sm-4 col-form-label">Tipo de Eqp.</label>
+                        <div class="col-sm-8">
+                            <select id="tipo_equipamento" name="tipo_equipamento" class="form-control col-sm-12">
+                                <option selected value="Desktop Projetista">Desktop Projetista</option>
+                                <option value="Laptop Projetista">Laptop Projetista</option>
+                                <option value="Desktop Administrativo">Desktop Administrativo</option>
+                                <option value="Laptop Administrativo">Laptop Administrativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="monitor_adicional" class="col-sm-4 col-form-label">Monitor Adicional</label>
+                        <div class="col-sm-8">
+                            <select id="monitor_adicional" name="monitor_adicional" class="form-control col-sm-12">
+                                <option selected value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="sigla_local" class="col-sm-4 col-form-label">Local</label>
+                        <div class="col-sm-8">
+                            <select id="sigla_local" name="sigla_local" class="form-control col-sm-12">
+                                <option selected value="BH">Belo Horizonte</option>
+                                <option value="IPA">Ipatinga</option>
+                                <option value="BA">Barcarena</option>
+                                <option value="PA">Paragominas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-success">Criar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
