@@ -4,7 +4,7 @@ module.exports = function (application) {
     });
 
 
-    // criar de usuário
+    // Criar de usuário
     application.get('/criaUsuario', function (req, res) {
         res.render("cria");
     });
@@ -13,8 +13,11 @@ module.exports = function (application) {
     });
 
 
-    // deletar de usuário
+    // Deletar de usuário
     application.get('/deletaUsuario', function (req, res) {
         res.render("deleta");
+    });
+    application.post('/deletaUsuario', function (req, res) {
+        application.app.controllers.deletaUsuario.deletaUsuario(application, req, res);
     });
 };

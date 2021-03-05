@@ -14,8 +14,8 @@ const operacao = 1;/*                                                          |
 
 
 /* DADOS SOBRE O USUÁRIO QUE ESTÁ SENDO CRIADO                                 |*/
-const solicitador = 'Samuel M';/* Pode ser digitado apenas o começo do nome    |*/
-const autodesk = "AE&C Collection"; // Se não tiver licença, deixar vazio. Se tiver, colocar o nome da licença
+/**/const solicitador = 'Samuel M';/* Pode ser digitado apenas o começo do nome    |*/
+/**/const autodesk = "AE&C Collection"; // Se não tiver licença, deixar vazio. Se tiver, colocar o nome da licença
 const data_ativacao = "01032021";/*                                            |*/
 const nome_usuario = "Caroline Fernandes Freitas";/*                           |*/
 const email_pessoal = "eng.carolinefreitas@gmail.com";/*                       |*/

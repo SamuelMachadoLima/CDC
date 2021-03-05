@@ -15,6 +15,7 @@ autodesk.addEventListener("change", (e) => {
 const nome_usuario = document.getElementById("nome_usuario");
 nome_usuario.addEventListener("blur", (e) => {
     var value = nome_usuario.value;
+    value.parentNode.removeChild( value );
     var name = value.split(" ");
     var first_letter = value.split("")[0].toLowerCase();
     var last_name = name[name.length-1].toLowerCase();
