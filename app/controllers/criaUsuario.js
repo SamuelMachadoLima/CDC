@@ -4,7 +4,7 @@ module.exports.criaUsuario = function (application, req, res) {
 
     const user = params.user;
     const pass = params.pass;
-    const pass_bhs = params.pass_bhs;
+    const pass_bhs = params.pass_bhs == "" ? params.pass : params.pass_bhs;
     const solicitador = params.solicitador;
     const autodesk = params.autodesk;
     const data_ativacao = params.data_ativacao.split("-")[2]+"/"+params.data_ativacao.split("-")[1]+"/"+params.data_ativacao.split("-")[0];
