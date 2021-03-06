@@ -161,7 +161,22 @@ module.exports.criaUsuario = function (application, req, res) {
         }
     
         await page.waitForTimeout(3000);
+
+        // Atualização do usuário no sistema AmPro
+        await page.goto("https://f3-1st.ampro-sd.com/am-sys/register-user-customers");
+        await page.waitForTimeout(1000);
+        await page.type('input[name="deslogin"]', email_blossom);
+        await page.type('input[name="desperson"]', nome_usuario);
+        await page.type('input[name="desemail"]', email_blossom);
+        await page.type('input[name="desemail_recovery"]', email_pessoal);
+        await page.type('input[name="nrphone"]', telefone);
+        await page.type('input[name="despassword"]', "12345");
+        await page.type('input[name="inadmin"]', "1");
+        await page.select('select[name="id_language"]', "2");
+        // await page.click('button[type="submit"]');
+
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
+        browser.close();
     })();
 
     res.redirect("/");

@@ -43,104 +43,122 @@ module.exports.deletaUsuario = function (application, req, res) {
         await page.waitForTimeout(4000);
     
         
-            for(let i = 0; i < 4; i++){
-                await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
-                await page.type('select[name="iduser"]', solicitador);
-                await page.type('select[name="id_call_notification"]', "Webpage");
+        for(let i = 0; i < 4; i++){
+            await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+            await page.type('select[name="iduser"]', solicitador);
+            await page.type('select[name="id_call_notification"]', "Webpage");
 
-                /* Excluir Conta de Usuário - Microsoft 365                                                 |*/
-                if(i==0){ 
-                    await page.select('select[name="id_rf_category"]', "32");/*                             |*/
-                    await page.click('button[type="submit"]');/*                                            |*/
-                    /*                                                                                      |*/
-                    await page.waitForTimeout(4000);/*                                                      |*/
-                    /*                                                                                      |*/
-                    await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
-                    await page.type('input[name="nm_user_e-mail"]', email_blossom);/*                       |*/
-                    await page.type(/*                                                                      |*/
-                        'textarea[name="ds_request_fulfilment"]', /*                                        |*/
-                        'Excluir Usuário - Microsoft 365 - \n'+/*                                           |*/
-                        data_desativacao + ' - \n'+
-                        nome_usuario);/*                                                                    |*/
+            /* Excluir Conta de Usuário - Microsoft 365                                                 |*/
+            if(i==0){ 
+                await page.select('select[name="id_rf_category"]', "32");/*                             |*/
+                await page.click('button[type="submit"]');/*                                            |*/
+                /*                                                                                      |*/
+                await page.waitForTimeout(4000);/*                                                      |*/
+                /*                                                                                      |*/
+                await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
+                await page.type('input[name="nm_user_e-mail"]', email_blossom);/*                       |*/
+                await page.type(/*                                                                      |*/
+                    'textarea[name="ds_request_fulfilment"]', /*                                        |*/
+                    'Excluir Usuário - Microsoft 365 - \n'+/*                                           |*/
+                    data_desativacao + ' - \n'+
+                    nome_usuario);/*                                                                    |*/
 
-                    // await page.click('button[type="submit"]');/*                                         |*/
-                }
-
-                /* Desabilitar Usuário no Sistema de Ger. de Serviço                                        |*/
-                else if(i==1){ /*                                                                           |*/ 
-                    await page.select('select[name="id_rf_category"]', "30");/*                             |*/ 
-                    await page.click('button[type="submit"]');/*                                            |*/
-                    /*                                                                                      |*/
-                    await page.waitForTimeout(4000);/*                                                      |*/
-                    /*                                                                                      |*/
-                    await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
-                    await page.type('input[name="nm_user_email"]', email_blossom);/*                        |*/
-                    await page.type(/*                                                                      |*/
-                        'textarea[name="ds_request_fulfilment"]', /*                                        |*/
-                        'Desabilitar Usuário no Sistema de Ger. de Serviço - \n'+/*                         |*/
-                        data_desativacao + ' - \n'+
-                        nome_usuario);/*                                                                    |*/
-                    
-                    // await page.click('button[type="submit"]');/*                                         |*/
-                }
-
-                /* Recolher Hardware do Usuário                                                             |*/
-                else if(i==2){ /*                                                                           |*/
-                    if(sigla_local == "BH" || sigla_local == "IPA")/*                                       |*/
-                        await page.select('select[name="id_rf_category"]', "33");/*                         |*/
-                    else if(sigla_local == "BA" || sigla_local == "PA")/*                                   |*/ 
-                        await page.select('select[name="id_rf_category"]', "34");/*                         |*/
-                    /*                                                                                      |*/
-                    await page.click('button[type="submit"]');/*                                            |*/
-                    /*                                                                                      |*/
-                    await page.waitForTimeout(4000);/*                                                      |*/
-                    /*                                                                                      |*/
-                    await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
-                    await page.type('input[name="nm_user_email"]', email_blossom);/*                        |*/
-                    await page.type(/*                                                                      |*/
-                        'textarea[name="ds_request_fulfilment"]', /*                                        |*/
-                        'Recolher Hardware do Usuário - \n'+/*                                              |*/
-                        data_desativacao + ' - \n'+
-                        local +' - \n'+/*                                                                   |*/
-                        nome_usuario);/*                                                                    |*/
-                    
-                    // await page.click('button[type="submit"]');/*                                         |*/
-                    break;
-                }
-    
-                await page.waitForTimeout(4000);
+                // await page.click('button[type="submit"]');/*                                         |*/
             }
-        
+
+            /* Desabilitar Usuário no Sistema de Ger. de Serviço                                        |*/
+            else if(i==1){ /*                                                                           |*/ 
+                await page.select('select[name="id_rf_category"]', "30");/*                             |*/ 
+                await page.click('button[type="submit"]');/*                                            |*/
+                /*                                                                                      |*/
+                await page.waitForTimeout(4000);/*                                                      |*/
+                /*                                                                                      |*/
+                await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
+                await page.type('input[name="nm_user_email"]', email_blossom);/*                        |*/
+                await page.type(/*                                                                      |*/
+                    'textarea[name="ds_request_fulfilment"]', /*                                        |*/
+                    'Desabilitar Usuário no Sistema de Ger. de Serviço - \n'+/*                         |*/
+                    data_desativacao + ' - \n'+
+                    nome_usuario);/*                                                                    |*/
+                
+                // await page.click('button[type="submit"]');/*                                         |*/
+            }
+
+            /* Recolher Hardware do Usuário                                                             |*/
+            else if(i==2){ /*                                                                           |*/
+                if(sigla_local == "BH" || sigla_local == "IPA")/*                                       |*/
+                    await page.select('select[name="id_rf_category"]', "33");/*                         |*/
+                else if(sigla_local == "BA" || sigla_local == "PA")/*                                   |*/ 
+                    await page.select('select[name="id_rf_category"]', "34");/*                         |*/
+                /*                                                                                      |*/
+                await page.click('button[type="submit"]');/*                                            |*/
+                /*                                                                                      |*/
+                await page.waitForTimeout(4000);/*                                                      |*/
+                /*                                                                                      |*/
+                await page.type('input[name="nm_user"]', nome_usuario);/*                               |*/
+                await page.type('input[name="nm_user_email"]', email_blossom);/*                        |*/
+                await page.type(/*                                                                      |*/
+                    'textarea[name="ds_request_fulfilment"]', /*                                        |*/
+                    'Recolher Hardware do Usuário - \n'+/*                                              |*/
+                    data_desativacao + ' - \n'+
+                    local +' - \n'+/*                                                                   |*/
+                    nome_usuario);/*                                                                    |*/
+                
+                // await page.click('button[type="submit"]');/*                                         |*/
+                break;
+            }
+
             await page.waitForTimeout(4000);
-            /*                                   Se houver Licenças Autodesk                                    |*/
-            if(autodesk.trim() != ""){                
-                /*                        Excluir Usuário do Ambiente Autodesk                                  |*/
-                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");/*      |*/
-                    await page.type('select[name="iduser"]', solicitador);/*                                    |*/
-                    await page.type('select[name="id_call_notification"]', "Webpage");/*                        |*/
-                    /*                                                                                          |*/
-                    await page.select('select[name="id_rf_category"]', "31");/*                                 |*/
-                    await page.click('button[type="submit"]');/*                                                |*/
-                    /*                                                                                          |*/
-                    await page.waitForTimeout(4000);/*                                                          |*/
-                    /*                                                                                          |*/
-                    await page.type('input[name="nm_user"]', nome_usuario);/*                                   |*/
-                    await page.type('input[name="nm_user_email"]', email_blossom);/*                            |*/
-                    await page.type(/*                                                                          |*/
-                        'textarea[name="ds_request_fulfilment"]', /*                                            |*/
-                        'Excluir Usuário do Ambiente Autodesk - \n'+/*                                          |*/
-                        data_desativacao + ' - \n'+
-                        local +'\n'+/*                                                                          |*/
-                        nome_usuario);/*                                                                        |*/
-                        
-                    // await page.click('button[type="submit"]');/*                                             |*/
-            }
+        }
+        
+        await page.waitForTimeout(4000);
+        /*                                   Se houver Licenças Autodesk                                    |*/
+        if(autodesk.trim() != ""){                
+            /*                        Excluir Usuário do Ambiente Autodesk                                  |*/
+                await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");/*      |*/
+                await page.type('select[name="iduser"]', solicitador);/*                                    |*/
+                await page.type('select[name="id_call_notification"]', "Webpage");/*                        |*/
+                /*                                                                                          |*/
+                await page.select('select[name="id_rf_category"]', "31");/*                                 |*/
+                await page.click('button[type="submit"]');/*                                                |*/
+                /*                                                                                          |*/
+                await page.waitForTimeout(4000);/*                                                          |*/
+                /*                                                                                          |*/
+                await page.type('input[name="nm_user"]', nome_usuario);/*                                   |*/
+                await page.type('input[name="nm_user_email"]', email_blossom);/*                            |*/
+                await page.type(/*                                                                          |*/
+                    'textarea[name="ds_request_fulfilment"]', /*                                            |*/
+                    'Excluir Usuário do Ambiente Autodesk - \n'+/*                                          |*/
+                    data_desativacao + ' - \n'+
+                    local +'\n'+/*                                                                          |*/
+                    nome_usuario);/*                                                                        |*/
+                    
+                // await page.click('button[type="submit"]');/*                                             |*/
+        }
     
     
         await page.waitForTimeout(3000);
-    
+        
+        // Alterar usuário no sistema AmPro
+        await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-user-customers");
+        await page.type('input[name="search1"]', nome_usuario);
+        await page.click('button[type="submit"]');
+        await page.waitForTimeout(3000);
+
+        const selector = 'form .table-striped tr td';
+        let id = await page.evaluate(sel =>
+            document.querySelector(sel).innerText
+          , selector);
+
+        await page.goto("https://f3-1st.ampro-sd.com/am-sys/update-user-customers/"+id);
+        await page.waitForTimeout(3000);
+        await page.type('input[name="inadmin"]', "2");
+        // await page.click('button[type="submit"]');
+
+        await page.waitForTimeout(3000);
+
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
-    
+        browser.close();
     })();
 
     res.redirect("/");
