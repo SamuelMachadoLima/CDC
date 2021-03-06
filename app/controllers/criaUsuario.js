@@ -4,9 +4,10 @@ module.exports.criaUsuario = function (application, req, res) {
 
     const user = params.user;
     const pass = params.pass;
+    const pass_bhs = params.pass_bhs;
     const solicitador = params.solicitador;
     const autodesk = params.autodesk;
-    const data_ativacao = params.data_ativacao.split("-")[2]+params.data_ativacao.split("-")[1]+params.data_ativacao.split("-")[0];
+    const data_ativacao = params.data_ativacao.split("-")[2]+"/"+params.data_ativacao.split("-")[1]+"/"+params.data_ativacao.split("-")[0];
     const nome_usuario = params.nome_usuario;
     const email_pessoal = params.email_pessoal;
     const telefone = params.telefone;
@@ -175,8 +176,38 @@ module.exports.criaUsuario = function (application, req, res) {
         await page.select('select[name="id_language"]', "2");
         // await page.click('button[type="submit"]');
 
-        await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
-        browser.close();
+        await page.waitForTimeout(3000);
+        
+        // Login e preenchimento do formulário na BHS
+        await browser.newPage();
+        pages = await browser.pages();
+        await pages[1].goto("https://portal.bhs.com.br/chamados/novo");
+        await pages[1].waitForTimeout(3000);
+        await pages[1].type('input[name="loginfmt"]', user);
+        await pages[1].click('input[type="submit"]');
+        await pages[1].waitForTimeout(1000);
+        await pages[1].type('input[name="passwd"]', pass_bhs);
+        await pages[1].click('input[type="submit"]');  
+        await pages[1].waitForTimeout(2000);     
+        await pages[1].click('input[value="Não"]');        
+        await pages[1].waitForTimeout(17000);
+               
+        await pages[1].type('input[name="titulo"]', "Criar conta Microsoft 365 - dia " + data_ativacao);        
+        await pages[1].waitForTimeout(1000);
+        await pages[1].select('select[name="tipoSolicitacao"]', "2");        
+        await pages[1].waitForTimeout(1000);
+        await pages[1].type(
+            'textarea[name="descricao"]', 
+            'Favor criar o seguinte usuário: \n'+
+            '- Nome: '+nome_usuario+"\n"+
+            '- E-mail para recuperação: '+email_pessoal+"\n"+
+            '- E-mail Blossom: '+email_blossom+"\n"+
+            '- Telefone para recuperação: '+telefone+"\n"+
+            '- Licença Microsoft: '+licenca_microsoft+"\n"+
+            '- Criar usuário na data: '+data_ativacao
+        );
+
+        // browser.close();
     })();
 
     res.redirect("/");
