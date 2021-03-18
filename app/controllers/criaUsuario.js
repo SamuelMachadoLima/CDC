@@ -71,7 +71,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     'Criar Conta de Usuário - Microsoft 365 - \n'+
                     nome_usuario);
                 
-                // await page.click('button[type="submit"]');
+                await page.click('button[type="submit"]');
             }
 
             else if(i==1){ 
@@ -87,7 +87,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     'Criar Conta e Atribuir Acesso ao Manage Engine - \n'+
                     nome_usuario);
                 
-                // await page.click('button[type="submit"]');
+                await page.click('button[type="submit"]');
             }
 
             else if(i==2){ 
@@ -107,7 +107,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     nome_usuario
                 );
                 
-                // await page.click('button[type="submit"]');
+                await page.click('button[type="submit"]');
             }
 
             
@@ -130,7 +130,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     tipo_equipamento +" - \n"+
                     nome_usuario);
                 
-                // await page.click('button[type="submit"]');
+                await page.click('button[type="submit"]');
                 break;
             }
             await page.waitForTimeout(3000);
@@ -158,7 +158,7 @@ module.exports.criaUsuario = function (application, req, res) {
                 autodesk+" - \n"+
                 nome_usuario);
             
-            // await page.click('button[type="submit"]');
+            await page.click('button[type="submit"]');
         }
     
         await page.waitForTimeout(3000);
@@ -174,7 +174,7 @@ module.exports.criaUsuario = function (application, req, res) {
         await page.type('input[name="despassword"]', "12345");
         await page.type('input[name="inadmin"]', "1");
         await page.select('select[name="id_language"]', "2");
-        // await page.click('button[type="submit"]');
+        await page.click('button[type="submit"]');
 
         await page.waitForTimeout(3000);
         
@@ -192,9 +192,9 @@ module.exports.criaUsuario = function (application, req, res) {
         await pages[1].click('input[value="Não"]');        
         await pages[1].waitForTimeout(17000);
                
-        await pages[1].type('input[name="titulo"]', "Criar conta Microsoft 365 - dia " + data_ativacao);        
+        await pages[1].type('input[name="titulo"]', "Criar conta "+nome_usuario+" - dia " + data_ativacao);        
         await pages[1].waitForTimeout(1000);
-        await pages[1].select('select[name="tipoSolicitacao"]', "2");        
+        await pages[1].select('select[name="tipoSolicitacao"]', "2");
         await pages[1].waitForTimeout(1000);
         await pages[1].type(
             'textarea[name="descricao"]', 

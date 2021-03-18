@@ -63,7 +63,7 @@ module.exports.deletaUsuario = function (application, req, res) {
                     data_desativacao + ' - \n'+
                     nome_usuario);/*                                                                    |*/
 
-                // await page.click('button[type="submit"]');/*                                         |*/
+                await page.click('button[type="submit"]');/*                                         |*/
             }
 
             /* Desabilitar Usuário no Sistema de Ger. de Serviço                                        |*/
@@ -81,7 +81,7 @@ module.exports.deletaUsuario = function (application, req, res) {
                     data_desativacao + ' - \n'+
                     nome_usuario);/*                                                                    |*/
                 
-                // await page.click('button[type="submit"]');/*                                         |*/
+                await page.click('button[type="submit"]');/*                                         |*/
             }
 
             /* Recolher Hardware do Usuário                                                             |*/
@@ -104,7 +104,7 @@ module.exports.deletaUsuario = function (application, req, res) {
                     local +' - \n'+/*                                                                   |*/
                     nome_usuario);/*                                                                    |*/
                 
-                // await page.click('button[type="submit"]');/*                                         |*/
+                await page.click('button[type="submit"]');/*                                         |*/
                 break;
             }
 
@@ -113,7 +113,7 @@ module.exports.deletaUsuario = function (application, req, res) {
         
         await page.waitForTimeout(4000);
         /*                                   Se houver Licenças Autodesk                                    |*/
-        if(autodesk.trim() != ""){                
+        if(autodesk.trim() != ""){
             /*                        Excluir Usuário do Ambiente Autodesk                                  |*/
                 await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");/*      |*/
                 await page.type('select[name="iduser"]', solicitador);/*                                    |*/
@@ -133,13 +133,13 @@ module.exports.deletaUsuario = function (application, req, res) {
                     local +'\n'+/*                                                                          |*/
                     nome_usuario);/*                                                                        |*/
                     
-                // await page.click('button[type="submit"]');/*                                             |*/
+                await page.click('button[type="submit"]');/*                                             |*/
         }
     
     
         await page.waitForTimeout(3000);
         
-        // Alterar usuário no sistema AmPro
+        // // Alterar usuário no sistema AmPro
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-user-customers");
         await page.type('input[name="search1"]', nome_usuario);
         await page.click('button[type="submit"]');
@@ -152,13 +152,14 @@ module.exports.deletaUsuario = function (application, req, res) {
 
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/update-user-customers/"+id);
         await page.waitForTimeout(3000);
+        await page.evaluate( () => document.getElementById("inadmin").value = "");
         await page.type('input[name="inadmin"]', "2");
-        // await page.click('button[type="submit"]');
+        await page.click('button[type="submit"]');
 
         await page.waitForTimeout(3000);
 
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
-        browser.close();
+        // browser.close();
     })();
 
     res.redirect("/");
