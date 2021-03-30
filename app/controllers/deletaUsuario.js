@@ -43,7 +43,7 @@ module.exports.deletaUsuario = function (application, req, res) {
         await page.waitForTimeout(4000);
     
         
-        for(let i = 0; i < 4; i++){
+        for(let i = 0; i < 3; i++){
             await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
             await page.type('select[name="iduser"]', solicitador);
             await page.type('select[name="id_call_notification"]', "Webpage");
