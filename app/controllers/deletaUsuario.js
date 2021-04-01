@@ -82,6 +82,8 @@ module.exports.deletaUsuario = function (application, req, res) {
                     nome_usuario);/*                                                                    |*/
                 
                 await page.click('button[type="submit"]');/*                                         |*/
+
+                break;
             }
 
             /* Recolher Hardware do Usuário                                                             |*/

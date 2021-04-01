@@ -17,6 +17,16 @@ module.exports.criaUsuario = function (application, req, res) {
     const tipo_equipamento = params.tipo_equipamento;
     const monitor_adicional = params.monitor_adicional;
     const sigla_local = params.sigla_local;
+    
+    var adicionaGrupos = params.adicionaGrupos.split(" ");
+    var grupos_mge = "";
+    for(let i = 0; i < adicionaGrupos.length; i++){
+        grupos_mge += adicionaGrupos[i];
+        if(i < (adicionaGrupos.length-2))
+            grupos_mge += ", ";
+    }  
+
+
 
     var local = "";
     if(sigla_local == "BH")
@@ -190,7 +200,7 @@ module.exports.criaUsuario = function (application, req, res) {
         await pages[1].click('input[type="submit"]');  
         await pages[1].waitForTimeout(2000);     
         await pages[1].click('input[value="Não"]');        
-        await pages[1].waitForTimeout(17000);
+        await pages[1].waitForTimeout(20000);
                
         await pages[1].type('input[name="titulo"]', "Criar conta "+nome_usuario+" - dia " + data_ativacao);        
         await pages[1].waitForTimeout(1000);
@@ -203,6 +213,8 @@ module.exports.criaUsuario = function (application, req, res) {
             '- E-mail para recuperação: '+email_pessoal+"\n"+
             '- E-mail Blossom: '+email_blossom+"\n"+
             '- Telefone para recuperação: '+telefone+"\n"+
+            '- Limite de destinatários no envio de e-mail: 15'+"\n"+
+            '- Incluir o usuário nos seguintes grupos do MGE: '+grupos_mge+"\n"+
             '- Licença Microsoft: '+licenca_microsoft+"\n"+
             '- Criar usuário na data: '+data_ativacao
         );

@@ -11,3 +11,7 @@ body{
 .form-group{
     margin-bottom: 8px !important;
 }
+
+.labelGrupo{
+    font-size: smaller;
+}
