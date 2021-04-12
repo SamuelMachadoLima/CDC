@@ -53,7 +53,7 @@ module.exports.criaUsuario = function (application, req, res) {
         await page.type('input[name="password"]', pass);
         await page.click('button[type="submit"]');
     
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(4000);
         
         for(let i = 0; i < 4; i++){
             await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
@@ -65,7 +65,7 @@ module.exports.criaUsuario = function (application, req, res) {
                 await page.select('select[name="id_rf_category"]', "1");
                 await page.click('button[type="submit"]');
                 
-                await page.waitForTimeout(3000);
+                await page.waitForTimeout(4000);
                 
                 await page.focus('input[name="dt_user_activation"]');
                 await page.keyboard.type(data_ativacao);
@@ -88,7 +88,7 @@ module.exports.criaUsuario = function (application, req, res) {
                 await page.select('select[name="id_rf_category"]', "36");
                 await page.click('button[type="submit"]');
                 
-                await page.waitForTimeout(3000);
+                await page.waitForTimeout(4000);
                 
                 await page.type('input[name="nm_usuario"]', nome_usuario);
                 await page.type('input[name="user_email"]', email_blossom);
@@ -104,7 +104,7 @@ module.exports.criaUsuario = function (application, req, res) {
                 await page.select('select[name="id_rf_category"]', "3");
                 await page.click('button[type="submit"]');
                 
-                await page.waitForTimeout(3000);
+                await page.waitForTimeout(4000);
                 
                 await page.type('input[name="nm_user"]', nome_usuario);
                 await page.type('input[name="nm_email_blossom"]', email_blossom);
@@ -129,24 +129,24 @@ module.exports.criaUsuario = function (application, req, res) {
                 
                 await page.click('button[type="submit"]');
                 
-                await page.waitForTimeout(3000);
+                await page.waitForTimeout(4000);
                 
                 await page.type('input[name="nm_usuario_criacao"]', nome_usuario);
                 await page.type('input[name="tp_equipamento"]', tipo_equipamento);
                 await page.type('input[name="monitor_24pol_sim_nao"]', monitor_adicional);
                 await page.type(
                     'textarea[name="ds_request_fulfilment"]', 
-                    'Instalar Hardware do Usuário Belo Horizonte - \n'+
+                    'Instalar Hardware do Usuário - '+ local +'\n'+
                     tipo_equipamento +" - \n"+
                     nome_usuario);
                 
                 await page.click('button[type="submit"]');
                 break;
             }
-            await page.waitForTimeout(3000);
+            await page.waitForTimeout(4000);
         }
         
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(4000);
         
         if(autodesk.trim() != ""){
             await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
@@ -156,7 +156,7 @@ module.exports.criaUsuario = function (application, req, res) {
             await page.select('select[name="id_rf_category"]', "2");
             await page.click('button[type="submit"]');
             
-            await page.waitForTimeout(3000);
+            await page.waitForTimeout(4000);
             
             await page.type('input[name="nm_usuario_criacao"]', nome_usuario);
             await page.type('input[name="email_blossom"]', email_blossom);  
@@ -171,7 +171,7 @@ module.exports.criaUsuario = function (application, req, res) {
             await page.click('button[type="submit"]');
         }
     
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(4000);
 
         // Atualização do usuário no sistema AmPro
         await page.goto("https://f3-1st.ampro-sd.com/am-sys/register-user-customers");
@@ -186,13 +186,13 @@ module.exports.criaUsuario = function (application, req, res) {
         await page.select('select[name="id_language"]', "2");
         await page.click('button[type="submit"]');
 
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(4000);
         
         // Login e preenchimento do formulário na BHS
         await browser.newPage();
         pages = await browser.pages();
         await pages[1].goto("https://portal.bhs.com.br/chamados/novo");
-        await pages[1].waitForTimeout(3000);
+        await pages[1].waitForTimeout(4000);
         await pages[1].type('input[name="loginfmt"]', user);
         await pages[1].click('input[type="submit"]');
         await pages[1].waitForTimeout(1000);
