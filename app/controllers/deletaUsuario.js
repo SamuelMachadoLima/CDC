@@ -7,6 +7,7 @@ module.exports.deletaUsuario = function (application, req, res) {
     const solicitador = params.d_solicitador;
     const autodesk = params.d_autodesk;
     const data_desativacao = params.d_data_desativacao.split("-")[2]+"/"+params.d_data_desativacao.split("-")[1]+"/"+params.d_data_desativacao.split("-")[0];
+    const pass_bhs = params.d_pass_bhs == "" ? params.d_pass : params.d_pass_bhs;
     const nome_usuario = params.d_nome_usuario;
     const email_blossom = params.d_email_blossom;
     const sigla_local = params.d_sigla_local;
@@ -155,11 +156,34 @@ module.exports.deletaUsuario = function (application, req, res) {
         await page.waitForTimeout(3000);
         await page.evaluate( () => document.getElementById("inadmin").value = "");
         await page.type('input[name="inadmin"]', "2");
-        await page.click('button[type="submit"]');
-
-        await page.waitForTimeout(3000);
-
-        await page.goto("https://f3-1st.ampro-sd.com/am-sys/list-request-fulfilment");
+        await page.click('button[type="submit"]');        
+        
+        await page.waitForTimeout(4000);
+        
+        // Login e preenchimento do formulário na BHS
+        await browser.newPage();
+        pages = await browser.pages();
+        await pages[1].goto("https://portal.bhs.com.br/chamados/novo");
+        await pages[1].waitForTimeout(4000);
+        await pages[1].type('input[name="loginfmt"]', user);
+        await pages[1].click('input[type="submit"]');
+        await pages[1].waitForTimeout(1000);
+        await pages[1].type('input[name="passwd"]', pass_bhs);
+        await pages[1].click('input[type="submit"]');  
+        await pages[1].waitForTimeout(2000);     
+        await pages[1].click('input[value="Não"]');        
+        await pages[1].waitForTimeout(20000);
+               
+        await pages[1].type('input[name="titulo"]', `Excluir conta - ${nome_usuario} - dia ${data_desativacao}`);        
+        await pages[1].waitForTimeout(1000);
+        await pages[1].select('select[name="tipoSolicitacao"]', "2");
+        await pages[1].waitForTimeout(1000);
+        await pages[1].type(
+            'textarea[name="descricao"]', 
+            `Favor excluir a conta do usuário ${nome_usuario}(${email_blossom}) no dia ${data_desativacao}.`
+        );
+        
+        
         // browser.close();
     })();
 
