@@ -15,3 +15,7 @@ body{
 .labelGrupo{
     font-size: smaller;
 }
+
+.gruposMGE_BHS label{
+    margin-bottom: 0px !important;
+}

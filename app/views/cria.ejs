@@ -16,138 +16,181 @@
 
         <form action="criaUsuario" method="POST" class="w-100 d-flex">
 
-            <div class="card text-center mt-4 w-50 h-100">
-                <div class="card-header">
-                    LOGIN AMPRO
+            <div class="w-50">
+                <div class="card text-center mt-4 ">
+                    <div class="card-header">
+                        LOGIN AMPRO
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="user">Email</label>
+                            <input type="email" class="form-control" id="user" name="user"
+                                placeholder="seu_usuario@blossomconsult.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Senha</label>
+                            <input type="password" class="form-control" required id="pass" name="pass">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="pass_bhs">Senha da BHS(Microsoft)</label>
+                            <input type="password" class="form-control" id="pass_bhs" name="pass_bhs">
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="user">Email</label>
-                        <input type="email" class="form-control" id="user" name="user"
-                            placeholder="seu_usuario@blossomconsult.com">
+
+                <div class="card text-center mt-4 ">
+                    <div class="card-header">
+                        Fazer Ações
                     </div>
-                    <div class="form-group">
-                        <label for="pass">Senha</label>
-                        <input type="password" class="form-control" required id="pass" name="pass">
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label for="pass_bhs">Senha da BHS(Microsoft)</label>
-                        <input type="password" class="form-control" id="pass_bhs" name="pass_bhs">
+                    <div class="card-body">
+                        <div class="col-12 text-left">
+                            <input type="checkbox" checked id="fazMicrosoft" value="fazMicrosoft" name="fazMicrosoft">
+                            <label class="labelGrupo" for="fazMicrosoft">Criar conta Microsoft</label>
+                        </div>
+                        <div class="col-12 text-left">
+                            <input type="checkbox" checked id="atribuiHW" value="atribuiHW" name="atribuiHW">
+                            <label class="labelGrupo" for="atribuiHW">Atribuir Hardware</label>
+                        </div>
+                        <div class="col-12 text-left">
+                            <input type="checkbox" checked id="chamadoBHS" value="chamadoBHS" name="chamadoBHS">
+                            <label class="labelGrupo" for="chamadoBHS">Criar chamado na BHS</label>
+                        </div>
+                        <div class="col-12 text-left">
+                            <input type="checkbox" checked id="inventarioMGE" value="inventarioMGE" name="inventarioMGE">
+                            <label class="labelGrupo" for="inventarioMGE">Criar Conta e Atribuir Acesso ao Manage Engine</label>
+                        </div>
+                        <div class="col-12 text-left">
+                            <input type="checkbox" checked id="criar_SGS" value="criar_SGS" name="criar_SGS">
+                            <label class="labelGrupo" for="criar_SGS">Criar Usuário no Sistema de Ger. de Serviços</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Criar Usuário</button>
                     </div>
                 </div>
             </div>
 
-            <div class="card text-center mt-4 w-50">
-                <div class="card-header">
-                    CRIAR USUÁRIO
-                </div>
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label for="solicitador" class="col-sm-4 col-form-label">Solicitador</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" required id="solicitador" name="solicitador" placeholder="Tamara Cançado">
-                        </div>
+            <div class="w-50">
+                <div class="card text-center mt-4 ">
+                    <div class="card-header">
+                        CRIAR USUÁRIO
                     </div>
-                    <div class="form-group row">
-                        <label for="autodesk" class="col-sm-4 col-form-label">Autodesk</label>
-                        <div class="d-flex col-sm-8">
-                            <select id="autodesk" class="form-control col-sm-3">
-                                <option selected value="Sim">Sim</option>
-                                <option value="Não">Não</option>
-                            </select>
-                            <input type="text" class="form-control col-sm-9" id="licença_autodesk" name="autodesk"
-                                placeholder="Nome da Licença">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="solicitador" class="col-sm-4 col-form-label">Solicitador</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="solicitador" name="solicitador"
+                                    placeholder="Tamara Cançado">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="data_ativacao" class="col-sm-4 col-form-label">Data de ativação</label>
-                        <div class="col-sm-8">
-                            <input type="date" class="form-control" required id="data_ativacao" name="data_ativacao" placeholder="dia/mês/ano">
+                        <div class="form-group row">
+                            <label for="autodesk" class="col-sm-4 col-form-label">Autodesk</label>
+                            <div class="d-flex col-sm-8">
+                                <select id="autodesk" class="form-control col-sm-3">
+                                    <option selected value="Sim">Sim</option>
+                                    <option value="Não">Não</option>
+                                </select>
+                                <input type="text" class="form-control col-sm-9" id="licença_autodesk" name="autodesk"
+                                    placeholder="Nome da Licença">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nome_usuario" class="col-sm-4 col-form-label">Nome do Usuário</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" autocomplete="off" required id="nome_usuario" name="nome_usuario">
+                        <div class="form-group row">
+                            <label for="data_ativacao" class="col-sm-4 col-form-label">Data de ativação</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" required id="data_ativacao" name="data_ativacao"
+                                    placeholder="dia/mês/ano">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email_pessoal" class="col-sm-4 col-form-label">E-mail Pessoal</label>
-                        <div class="col-sm-8">
-                            <input type="email" class="form-control" autocomplete="off" required id="email_pessoal" name="email_pessoal" placeholder="nome@gmail.com">
+                        <div class="form-group row">
+                            <label for="nome_usuario" class="col-sm-4 col-form-label">Nome do Usuário</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" autocomplete="off" required id="nome_usuario"
+                                    name="nome_usuario">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="telefone" class="col-sm-4 col-form-label">Telefone</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" autocomplete="off" required id="telefone" name="telefone">
+                        <div class="form-group row">
+                            <label for="email_pessoal" class="col-sm-4 col-form-label">E-mail Pessoal</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" autocomplete="off" required id="email_pessoal"
+                                    name="email_pessoal" placeholder="nome@gmail.com">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="licença_microsoft" class="col-sm-4 col-form-label">Licença Microsoft</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" required id="licença_microsoft" name="licenca_microsoft">
+                        <div class="form-group row">
+                            <label for="telefone" class="col-sm-4 col-form-label">Telefone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" autocomplete="off" required id="telefone"
+                                    name="telefone">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="outros_softwares" class="col-sm-4 col-form-label">Outros Softwares</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" required id="outros_softwares" name="outros_softwares">
+                        <div class="form-group row">
+                            <label for="licença_microsoft" class="col-sm-4 col-form-label">Licença Microsoft</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="licença_microsoft"
+                                    name="licenca_microsoft">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email_blossom" class="col-sm-4 col-form-label">E-mail Blossom</label>
-                        <div class="col-sm-8">
-                            <input type="email" class="form-control" required id="email_blossom" name="email_blossom"
-                                placeholder="usuario@blossomconsult.com">
+                        <div class="form-group row">
+                            <label for="outros_softwares" class="col-sm-4 col-form-label">Outros Softwares</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="outros_softwares"
+                                    name="outros_softwares">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-4">
-                            <label class="col-12 col-form-label">Grupos MGE</label>
+                        <div class="form-group row">
+                            <label for="email_blossom" class="col-sm-4 col-form-label">E-mail Blossom</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" required id="email_blossom"
+                                    name="email_blossom" placeholder="usuario@blossomconsult.com">
+                            </div>
                         </div>
-                        <div id="gruposMGE" class="col-8">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="col-12 col-form-label">Grupos MGE</label>
+                            </div>
+                            <div id="gruposMGE" class="col-8">
 
-                            <input type="hidden" name="adicionaGrupos" id="adicionaGrupos">
+                                <input type="hidden" name="adicionaGrupos" id="adicionaGrupos">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipo_equipamento" class="col-sm-4 col-form-label">Tipo de Eqp.</label>
+                            <div class="col-sm-8">
+                                <select id="tipo_equipamento" name="tipo_equipamento" class="form-control col-sm-12">
+                                    <option selected value="Desktop Projetista">Desktop Projetista</option>
+                                    <option value="Laptop Projetista">Laptop Projetista</option>
+                                    <option value="Desktop Administrativo">Desktop Administrativo</option>
+                                    <option value="Laptop Administrativo">Laptop Administrativo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="monitor_adicional" class="col-sm-4 col-form-label">Monitor Adicional</label>
+                            <div class="col-sm-8">
+                                <select id="monitor_adicional" name="monitor_adicional" class="form-control col-sm-12">
+                                    <option selected value="Sim">Sim</option>
+                                    <option value="Não">Não</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sigla_local" class="col-sm-4 col-form-label">Local</label>
+                            <div class="col-sm-8">
+                                <select id="sigla_local" name="sigla_local" class="form-control col-sm-12">
+                                    <option selected value="BH">Belo Horizonte</option>
+                                    <option value="IPA">Ipatinga</option>
+                                    <option value="BA">Barcarena</option>
+                                    <option value="PA">Paragominas</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="tipo_equipamento" class="col-sm-4 col-form-label">Tipo de Eqp.</label>
-                        <div class="col-sm-8">
-                            <select id="tipo_equipamento" name="tipo_equipamento" class="form-control col-sm-12">
-                                <option selected value="Desktop Projetista">Desktop Projetista</option>
-                                <option value="Laptop Projetista">Laptop Projetista</option>
-                                <option value="Desktop Administrativo">Desktop Administrativo</option>
-                                <option value="Laptop Administrativo">Laptop Administrativo</option>
-                            </select>
-                        </div>
+                    <div class="card-footer text-muted">
+                        <button type="submit" class="btn btn-success">Criar Usuário</button>
                     </div>
-                    <div class="form-group row">
-                        <label for="monitor_adicional" class="col-sm-4 col-form-label">Monitor Adicional</label>
-                        <div class="col-sm-8">
-                            <select id="monitor_adicional" name="monitor_adicional" class="form-control col-sm-12">
-                                <option selected value="Sim">Sim</option>
-                                <option value="Não">Não</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="sigla_local" class="col-sm-4 col-form-label">Local</label>
-                        <div class="col-sm-8">
-                            <select id="sigla_local" name="sigla_local" class="form-control col-sm-12">
-                                <option selected value="BH">Belo Horizonte</option>
-                                <option value="IPA">Ipatinga</option>
-                                <option value="BA">Barcarena</option>
-                                <option value="PA">Paragominas</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="submit" class="btn btn-success">Criar Usuário</button>
                 </div>
             </div>
+
+
+
         </form>
 
     </div>

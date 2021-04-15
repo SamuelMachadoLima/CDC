@@ -1,6 +1,6 @@
 // Bloquear campo de nome da licença autodesk
 const autodesk = document.getElementById('autodesk');
-autodesk.addEventListener("change", (e) => {
+function verificaAutodesk(){
     var value=autodesk.options[autodesk.selectedIndex].value;
 
     if(value == "Não"){
@@ -9,6 +9,10 @@ autodesk.addEventListener("change", (e) => {
     }else{
         document.getElementById("licença_autodesk").removeAttribute("readonly");
     }
+}
+
+autodesk.addEventListener("change", (e) => {
+    verificaAutodesk();
 });
 
 // Preencher campo de e-mail do usuário
@@ -28,13 +32,15 @@ var gruposMGE = ['BLS-USUARIOS', 'BLS-ITSM', 'BLS-RH', 'BLS-FINANCEIRO', 'BLS-AD
 'BLS-ENG-MECANICA', 'BLS-ENG-ELETRICA', 'BLS-ENG-CONCRETO', 'BLS-ENG-TUBULACAO', 'BLS-PDI'];
 
 window.onload = function(){
+    verificaAutodesk();
+    
     var divGrupos = document.getElementById('gruposMGE');
     let checked = "checked";
 
     for(let i = 0; i < gruposMGE.length; i++){
-        divGrupos.innerHTML += `<div class="col-12 text-left">
-                                    <input type="checkbox" `+checked+` id="`+gruposMGE[i]+`" value="`+gruposMGE[i]+`" name="grupos_mge" onchange="adicionaGrupo()">
-                                    <label class="labelGrupo" for="`+gruposMGE[i]+`">`+gruposMGE[i]+`</label>
+        divGrupos.innerHTML += `<div class="col-12 text-left gruposMGE_BHS">
+                                    <input type="checkbox" ${checked} id="${gruposMGE[i]}" value="${gruposMGE[i]}" name="grupos_mge" onchange="adicionaGrupo()">
+                                    <label class="labelGrupo" for="${gruposMGE[i]}">${gruposMGE[i]}</label>
                                 </div>`;
         checked = "";
     }    
