@@ -63,12 +63,12 @@ module.exports.criaUsuario = function (application, req, res) {
             await page.waitForTimeout(4000);
 
             for (let i = 0; i < 4; i++) {
-                await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
-                await page.type('select[name="iduser"]', solicitador);
-                await page.type('select[name="id_call_notification"]', "Webpage");
-
 
                 if (i == 0 && fazMicrosoft) {
+                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+                    await page.type('select[name="iduser"]', solicitador);
+                    await page.type('select[name="id_call_notification"]', "Webpage");
+
                     await page.select('select[name="id_rf_category"]', "1");
                     await page.click('button[type="submit"]');
 
@@ -92,6 +92,10 @@ module.exports.criaUsuario = function (application, req, res) {
                 }
 
                 else if (i == 1 && inventarioMGE) {
+                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+                    await page.type('select[name="iduser"]', solicitador);
+                    await page.type('select[name="id_call_notification"]', "Webpage");
+
                     await page.select('select[name="id_rf_category"]', "36");
                     await page.click('button[type="submit"]');
 
@@ -108,6 +112,10 @@ module.exports.criaUsuario = function (application, req, res) {
                 }
 
                 else if (i == 2 && criar_SGS) {
+                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+                    await page.type('select[name="iduser"]', solicitador);
+                    await page.type('select[name="id_call_notification"]', "Webpage");
+
                     await page.select('select[name="id_rf_category"]', "3");
                     await page.click('button[type="submit"]');
 
@@ -129,6 +137,10 @@ module.exports.criaUsuario = function (application, req, res) {
 
 
                 else if (i == 3 && atribuiHW) {
+                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+                    await page.type('select[name="iduser"]', solicitador);
+                    await page.type('select[name="id_call_notification"]', "Webpage");
+
                     if (sigla_local == "BH" || sigla_local == "IPA")
                         await page.select('select[name="id_rf_category"]', "7");
                     else if (sigla_local == "BA" || sigla_local == "PA")
@@ -196,7 +208,7 @@ module.exports.criaUsuario = function (application, req, res) {
 
 
         // Login e preenchimento do formulário na BHS
-        if (chamadoBHS) {
+        if (chamadoBHS && (sigla_local != "BA" && sigla_local != "PA")) {
             await page.waitForTimeout(4000);
 
             await browser.newPage();
@@ -210,7 +222,7 @@ module.exports.criaUsuario = function (application, req, res) {
             await pages[1].click('input[type="submit"]');
             await pages[1].waitForTimeout(2000);
             await pages[1].click('input[value="Não"]');
-            await pages[1].waitForTimeout(20000);
+            await pages[1].waitForTimeout(21000);
 
             await pages[1].type('input[name="titulo"]', `Criar conta ${nome_usuario} - dia ${data_ativacao}`);
             await pages[1].waitForTimeout(1000);
@@ -224,9 +236,10 @@ module.exports.criaUsuario = function (application, req, res) {
                 - E-mail Blossom: ${email_blossom}
                 - Telefone para recuperação: ${telefone}
                 - Limite de destinatários no envio de e-mail: 15
-                - Incluir o usuário nos seguintes grupos do MGE: ${grupos_mge}
-                - Licença Microsoft: ${licenca_microsoft}
-                - Criar usuário na data: ${data_ativacao}`
+                - Grupos do Manage Engine: ${grupos_mge}
+                - Licenças: ${licenca_microsoft} ${outros_softwares != "Não" ? ", '" + outros_softwares + "'" : ""}
+                - Usuário iniciará dia: ${data_ativacao}
+                - Criar usuário no dia: `
             );
         }
 
