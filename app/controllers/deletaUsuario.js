@@ -1,4 +1,5 @@
 module.exports.deletaUsuario = function (application, req, res) {
+    console.log("2")
     const puppeteer = require('puppeteer');
     var params = req.body;
 

@@ -18,7 +18,7 @@ module.exports = function (application) {
         res.render("deleta");
     });
     application.post('/deletaUsuario', function (req, res) {
-        console.log("chegou aqui")
+        console.log("1")
         application.app.controllers.deletaUsuario.deletaUsuario(application, req, res);
     });
 };
