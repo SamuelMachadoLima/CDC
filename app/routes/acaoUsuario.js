@@ -19,6 +19,10 @@ module.exports = function (application) {
     });
     application.post('/deletaUsuario', function (req, res) {
         console.log("1")
+        console.log(application)
+        console.log(application.app)
+        console.log(application.app.controllers)
+
         application.app.controllers.deletaUsuario.deletaUsuario(application, req, res);
     });
 };
