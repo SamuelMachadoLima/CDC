@@ -31,7 +31,7 @@ module.exports.deletaUsuario = function (application, req, res) {
 
     (async () => {
 
-        const browser = await puppeteer.launch({ headless: false, defaultViewport: null });
+        const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
         const page = await browser.newPage();
 
         // Para fechar uma aba vazia
