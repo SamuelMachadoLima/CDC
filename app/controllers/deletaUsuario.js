@@ -33,8 +33,7 @@ module.exports.deletaUsuario = function (application, req, res) {
     (async () => {
 
         const browser = await puppeteer.launch({
-            headless: false,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox']
          });
         const page = await browser.newPage();
 
