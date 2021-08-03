@@ -18,7 +18,7 @@ module.exports = function (application) {
         res.render("deleta");
     });
     application.post('/deletaUsuario', function (req, res) {
-        console.log(`Inicio \n${application.app}\n Fim`)
+        console.log(`Inicio \n${application.controllers}\nFim`)
         console.log(application.app.controllers)
 
         application.app.controllers.deletaUsuario.deletaUsuario(application, req, res);
