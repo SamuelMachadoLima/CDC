@@ -1,5 +1,4 @@
 module.exports.deletaUsuario = function (application, req, res) {
-    console.log("2")
     const puppeteer = require('puppeteer');
     var params = req.body;
 
@@ -32,10 +31,7 @@ module.exports.deletaUsuario = function (application, req, res) {
 
     (async () => {
 
-        const browser = await puppeteer.launch({
-            headless: false,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-         });
+        const browser = await puppeteer.launch({ headless: false, defaultViewport: null });
         const page = await browser.newPage();
 
         // Para fechar uma aba vazia
@@ -149,7 +145,7 @@ module.exports.deletaUsuario = function (application, req, res) {
                     'textarea[name="ds_request_fulfilment"]',
                     'Excluir Usuário do Ambiente Autodesk - \n' +
                     data_desativacao + ' - \n' +
-                    local + '\n' +
+                    local + '\n- ' +
                     nome_usuario);
 
                 await page.click('button[type="submit"]');
@@ -189,9 +185,9 @@ module.exports.deletaUsuario = function (application, req, res) {
             await pages[1].waitForTimeout(1000);
             await pages[1].type('input[name="passwd"]', pass_bhs);
             await pages[1].click('input[type="submit"]');
-            await pages[1].waitForTimeout(2000);
+            await pages[1].waitForTimeout(12000);
             await pages[1].click('input[value="Não"]');
-            await pages[1].waitForTimeout(21000);
+            await pages[1].waitForTimeout(18000);
 
             await pages[1].type('input[name="titulo"]', `Excluir conta - ${nome_usuario} - dia ${data_desativacao}`);
             await pages[1].waitForTimeout(1000);

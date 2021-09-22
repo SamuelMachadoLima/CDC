@@ -17,6 +17,8 @@
         <form action="criaUsuario" method="POST" class="w-100 d-flex mb-3">
 
             <div class="w-50">
+
+                <!-- Dados para Login no AmPRO e Portal BHS -->
                 <div class="card text-center mt-4 ">
                     <div class="card-header">
                         LOGIN AMPRO
@@ -25,23 +27,42 @@
                         <div class="form-group">
                             <label for="user">Email</label>
                             <input type="email" class="form-control" id="user" name="user"
-                                placeholder="seu_usuario@blossomconsult.com">
+                                placeholder="seu_usuario@blossomconsult.com" value="smlima@blossomconsult.com">
                         </div>
                         <div class="form-group">
                             <label for="pass">Senha</label>
-                            <input type="password" class="form-control" required id="pass" name="pass">
+                            <input type="password" class="form-control" required id="pass" name="pass"
+                            value="cHUCRUTE12*">
                         </div>
                         <hr>
                         <div class="form-group">
                             <label for="pass_bhs">Senha da BHS (Microsoft)</label>
-                            <input type="password" class="form-control" id="pass_bhs" name="pass_bhs">
+                            <input type="password" class="form-control" id="pass_bhs" name="pass_bhs"
+                            value="Leumas4321">
                         </div>
                     </div>
                 </div>
 
+                <!-- Carregar dados de um arquivo automaticamente -->
                 <div class="card text-center mt-4 ">
                     <div class="card-header">
-                        Fazer Ações
+                        CARREGAR DADOS DO E-MAIL
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="file" class="src-file" id="src-file"/>
+                            <br><br>
+                            <div class="incorrect-type info-box error-msg" style="display: none;">
+                                <label style="color: red;">Carregue um arquivo no formato .MSG</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações que deverão ser feitas -->
+                <div class="card text-center mt-4 ">
+                    <div class="card-header">
+                        AÇÕES
                     </div>
                     <div class="card-body">
                         <div class="col-12 text-left">
@@ -66,6 +87,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="w-50">
@@ -74,31 +96,6 @@
                         CRIAR USUÁRIO
                     </div>
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="solicitador" class="col-sm-4 col-form-label">Solicitador</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" required id="solicitador" name="solicitador"
-                                    placeholder="Tamara Cançado">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="autodesk" class="col-sm-4 col-form-label">Autodesk</label>
-                            <div class="d-flex col-sm-8">
-                                <select id="autodesk" class="form-control col-sm-3">
-                                    <option selected value="Sim">Sim</option>
-                                    <option value="Não">Não</option>
-                                </select>
-                                <input type="text" class="form-control col-sm-9" id="licença_autodesk" name="autodesk"
-                                    placeholder="Nome da Licença">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="data_ativacao" class="col-sm-4 col-form-label">Data de ativação</label>
-                            <div class="col-sm-8">
-                                <input type="date" class="form-control" required id="data_ativacao" name="data_ativacao"
-                                    placeholder="dia/mês/ano">
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label for="nome_usuario" class="col-sm-4 col-form-label">Nome do Usuário</label>
                             <div class="col-sm-8">
@@ -114,10 +111,31 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="email_blossom" class="col-sm-4 col-form-label">E-mail Blossom</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" required id="email_blossom"
+                                    name="email_blossom" placeholder="usuario@blossomconsult.com">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="telefone" class="col-sm-4 col-form-label">Telefone</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" autocomplete="off" required id="telefone"
                                     name="telefone">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sigla_local" class="col-sm-4 col-form-label">Local</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="sigla_local"
+                                    name="sigla_local">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="data_ativacao" class="col-sm-4 col-form-label">Data de ativação</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" required id="data_ativacao" name="data_ativacao"
+                                    placeholder="dia/mês/ano">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -128,26 +146,21 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="autodesk" class="col-sm-4 col-form-label">Autodesk</label>
+                            <div class="d-flex col-sm-8">
+                                <select id="autodesk" class="form-control col-sm-3">
+                                    <option selected value="Sim">Sim</option>
+                                    <option value="Não">Não</option>
+                                </select>
+                                <input type="text" class="form-control col-sm-9" id="licença_autodesk" name="autodesk"
+                                placeholder="Nome da Licença">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="outros_softwares" class="col-sm-4 col-form-label">Outros Softwares</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" required id="outros_softwares"
-                                    name="outros_softwares">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="email_blossom" class="col-sm-4 col-form-label">E-mail Blossom</label>
-                            <div class="col-sm-8">
-                                <input type="email" class="form-control" required id="email_blossom"
-                                    name="email_blossom" placeholder="usuario@blossomconsult.com">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-4">
-                                <label class="col-12 col-form-label">Grupos MGE</label>
-                            </div>
-                            <div id="gruposMGE" class="col-8">
-
-                                <input type="hidden" name="adicionaGrupos" id="adicionaGrupos">
+                                name="outros_softwares">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -171,14 +184,40 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="sigla_local" class="col-sm-4 col-form-label">Local</label>
+                            <label for="departamento" class="col-sm-4 col-form-label">Departamento</label>
                             <div class="col-sm-8">
-                                <select id="sigla_local" name="sigla_local" class="form-control col-sm-12">
-                                    <option selected value="BH">Belo Horizonte</option>
-                                    <option value="IPA">Ipatinga</option>
-                                    <option value="BA">Barcarena</option>
-                                    <option value="PA">Paragominas</option>
-                                </select>
+                                <input type="text" class="form-control" required id="departamento"
+                                name="departamento">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="disciplina" class="col-sm-4 col-form-label">Disciplina</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="disciplina"
+                                name="disciplina">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="subdisciplina" class="col-sm-4 col-form-label">Subdisciplina</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="subdisciplina"
+                                name="subdisciplina">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="solicitador" class="col-sm-4 col-form-label">Solicitante</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="solicitador" name="solicitador"
+                                    placeholder="Tamara Cançado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="col-12 col-form-label">Grupos MGE</label>
+                            </div>
+                            <div id="gruposMGE" class="col-8">
+                                
+                                <input type="hidden" name="adicionaGrupos" id="adicionaGrupos">
                             </div>
                         </div>
                     </div>
@@ -188,13 +227,15 @@
                 </div>
             </div>
 
-
-
         </form>
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/scriptCDC.js"></script>
+    <script src="js/DataStream.js"></script>
+    <script src="js/msg.reader.js"></script>
+    <script src="js/carregarEmail.js"></script>
 </body>
 
 </html>

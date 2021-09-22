@@ -17,8 +17,13 @@ module.exports = function (application) {
     application.get('/deletaUsuario', function (req, res) {
         res.render("deleta");
     });
-    application.get('/deletaUsuario', function (req, res) {
-        console.log(`1`)
-        application.controllers.deletaUsuario.deletaUsuario(application, req, res);
+    application.post('/deletaUsuario', function (req, res) {
+        application.app.controllers.deletaUsuario.deletaUsuario(application, req, res);
+    });
+    
+    
+    // Teste Carregar arquivo
+    application.get('/teste', function (req, res) {
+        res.render("teste/teste");
     });
 };

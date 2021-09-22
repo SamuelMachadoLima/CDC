@@ -19,6 +19,9 @@ module.exports.criaUsuario = function (application, req, res) {
     const telefone = params.telefone;
     const licenca_microsoft = params.licenca_microsoft;
     const outros_softwares = params.outros_softwares;
+    const departamento = params.departamento;
+    const disciplina = params.disciplina;
+    const subdisciplina = params.subdisciplina;
     const email_blossom = params.email_blossom;
     const tipo_equipamento = params.tipo_equipamento;
     const monitor_adicional = params.monitor_adicional;
@@ -32,17 +35,16 @@ module.exports.criaUsuario = function (application, req, res) {
             grupos_mge += ", ";
     }
 
+    const ba = ['Barcarena', 'Paragominas', 'Belém'];
+    const bh = ['Barro Alto', 'Belo Horizonte', 'Goianésia', 'Ipatinga', 'Rio de Janeiro'];
 
-
-    var local = "";
-    if (sigla_local == "BH")
-        local = "Blossom Consult - Matriz";
-    else if (sigla_local == "IPA")
-        local = "Blossom Consult - Filial Ipatinga";
-    else if (sigla_local == "BA")
-        local = "Blossom Consult - Filial Barcarena";
-    else if (sigla_local == "PA")
-        local = "Blossom Consult - Filial Paragominas";
+    var local = "BH";
+    for(let i = 0; i < ba.length; i++){
+        if (sigla_local.includes(ba[i])){
+            local = "BA"
+            break;
+        }
+    }
 
 
     (async () => {
@@ -82,7 +84,10 @@ module.exports.criaUsuario = function (application, req, res) {
                     await page.type('input[name="tp_licenca_microsoft"]', licenca_microsoft)
                     await page.type('input[name="outros_sw_microsoft"]', outros_softwares);
                     await page.type('input[name="nm_email_blossom"]', email_blossom);
-                    await page.type('input[name="nm_local"]', local);;
+                    await page.type('input[name="nm_local"]', sigla_local);
+                    await page.type('input[name="nm_department"]', departamento);
+                    await page.type('input[name="nm_subject"]', disciplina);
+                    await page.type('input[name="nm_subject_1"]', subdisciplina);
                     await page.type(
                         'textarea[name="ds_request_fulfilment"]',
                         'Criar Conta de Usuário - Microsoft 365 - \n' +
@@ -125,7 +130,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     await page.type('input[name="nm_email_blossom"]', email_blossom);
                     await page.type('input[name="nm_email_not_blossom"]', email_pessoal);
                     await page.type('input[name="nm_user_phone"]', telefone);
-                    await page.type('input[name="nm_user_local"]', local);
+                    await page.type('input[name="nm_user_local"]', sigla_local);
                     await page.type(
                         'textarea[name="ds_request_fulfilment"]',
                         'Criar Usuário no Sistema de Ger. de Serviços - \n' +
@@ -141,9 +146,9 @@ module.exports.criaUsuario = function (application, req, res) {
                     await page.type('select[name="iduser"]', solicitador);
                     await page.type('select[name="id_call_notification"]', "Webpage");
 
-                    if (sigla_local == "BH" || sigla_local == "IPA")
+                    if (local == "BH") // Para localidade de Belo Horizonte
                         await page.select('select[name="id_rf_category"]', "7");
-                    else if (sigla_local == "BA" || sigla_local == "PA")
+                    else if (local == "BA") // Para localidade de Barcarena
                         await page.select('select[name="id_rf_category"]', "6");
 
                     await page.click('button[type="submit"]');
@@ -155,7 +160,7 @@ module.exports.criaUsuario = function (application, req, res) {
                     await page.type('input[name="monitor_24pol_sim_nao"]', monitor_adicional);
                     await page.type(
                         'textarea[name="ds_request_fulfilment"]',
-                        'Instalar Hardware do Usuário - ' + local + '\n' +
+                        'Instalar Hardware do Usuário - ' + sigla_local + '\n' +
                         tipo_equipamento + " - \n" +
                         nome_usuario);
 
@@ -180,7 +185,7 @@ module.exports.criaUsuario = function (application, req, res) {
                 await page.type('input[name="nm_usuario_criacao"]', nome_usuario);
                 await page.type('input[name="email_blossom"]', email_blossom);
                 await page.type('input[name="tp_licenca_autodesk"]', autodesk);
-                await page.type('input[name="nm_local"]', local);
+                await page.type('input[name="nm_local"]', sigla_local);
                 await page.type(
                     'textarea[name="ds_request_fulfilment"]',
                     'Criar Conta e/ou Atribuir Acesso a Licenças Autodesk - \n' +
@@ -203,12 +208,13 @@ module.exports.criaUsuario = function (application, req, res) {
             await page.type('input[name="despassword"]', "12345");
             await page.type('input[name="inadmin"]', "1");
             await page.select('select[name="id_language"]', "2");
+
             await page.click('button[type="submit"]');
         }
 
 
         // Login e preenchimento do formulário na BHS
-        if (chamadoBHS && (sigla_local != "BA" && sigla_local != "PA")) {
+        if (chamadoBHS && (local != "BA")) {
             await page.waitForTimeout(4000);
 
             await browser.newPage();
@@ -220,7 +226,7 @@ module.exports.criaUsuario = function (application, req, res) {
             await pages[1].waitForTimeout(1000);
             await pages[1].type('input[name="passwd"]', pass_bhs);
             await pages[1].click('input[type="submit"]');
-            await pages[1].waitForTimeout(2000);
+            await pages[1].waitForTimeout(10000);
             await pages[1].click('input[value="Não"]');
             await pages[1].waitForTimeout(21000);
 
@@ -230,7 +236,7 @@ module.exports.criaUsuario = function (application, req, res) {
             await pages[1].waitForTimeout(1000);
             await pages[1].type(
                 'textarea[name="descricao"]',
-                `Favor criar o seguinte usuário:
+                `Favor criar o seguinte usuário no dia XX/XX/XXXX:
                 - Nome: ${nome_usuario}
                 - E-mail para recuperação: ${email_pessoal}
                 - E-mail Blossom: ${email_blossom}
@@ -239,7 +245,13 @@ module.exports.criaUsuario = function (application, req, res) {
                 - Grupos do Manage Engine: ${grupos_mge}
                 - Licenças: ${licenca_microsoft} ${outros_softwares != "Não" ? ", '" + outros_softwares + "'" : ""}
                 - Usuário iniciará dia: ${data_ativacao}
-                - Criar usuário no dia: `
+                
+                Informações para Outlook:
+                - Departamento: ${departamento}
+                - Disciplina: ${disciplina}
+                - Subdisciplina: ${subdisciplina}
+                - Local: ${sigla_local}
+                `
             );
         }
 
