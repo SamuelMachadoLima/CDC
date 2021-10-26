@@ -27,13 +27,13 @@ module.exports.criaUsuario = function (application, req, res) {
     const monitor_adicional = params.monitor_adicional;
     const sigla_local = params.sigla_local;
 
-    var adicionaGrupos = params.adicionaGrupos.split(" ");
-    var grupos_mge = "";
-    for (let i = 0; i < adicionaGrupos.length; i++) {
-        grupos_mge += adicionaGrupos[i];
-        if (i < (adicionaGrupos.length - 2))
-            grupos_mge += ", ";
-    }
+    // var adicionaGrupos = params.adicionaGrupos.split(" ");
+    // var grupos_mge = "";
+    // for (let i = 0; i < adicionaGrupos.length; i++) {
+    //     grupos_mge += adicionaGrupos[i];
+    //     if (i < (adicionaGrupos.length - 2))
+    //         grupos_mge += ", ";
+    // }
 
     const ba = ['Barcarena', 'Paragominas', 'Belém'];
     const bh = ['Barro Alto', 'Belo Horizonte', 'Goianésia', 'Ipatinga', 'Rio de Janeiro'];
@@ -96,25 +96,27 @@ module.exports.criaUsuario = function (application, req, res) {
                     await page.click('button[type="submit"]');
                 }
 
-                else if (i == 1 && inventarioMGE) {
-                    await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
-                    await page.type('select[name="iduser"]', solicitador);
-                    await page.type('select[name="id_call_notification"]', "Webpage");
+                // ------------------ Descontinuação do MGE ------------------
 
-                    await page.select('select[name="id_rf_category"]', "36");
-                    await page.click('button[type="submit"]');
+                // else if (i == 1 && inventarioMGE) {
+                //     await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
+                //     await page.type('select[name="iduser"]', solicitador);
+                //     await page.type('select[name="id_call_notification"]', "Webpage");
 
-                    await page.waitForTimeout(4000);
+                //     await page.select('select[name="id_rf_category"]', "36");
+                //     await page.click('button[type="submit"]');
 
-                    await page.type('input[name="nm_usuario"]', nome_usuario);
-                    await page.type('input[name="user_email"]', email_blossom);
-                    await page.type(
-                        'textarea[name="ds_request_fulfilment"]',
-                        'Criar Conta e Atribuir Acesso ao Manage Engine - \n' +
-                        nome_usuario);
+                //     await page.waitForTimeout(4000);
 
-                    await page.click('button[type="submit"]');
-                }
+                //     await page.type('input[name="nm_usuario"]', nome_usuario);
+                //     await page.type('input[name="user_email"]', email_blossom);
+                //     await page.type(
+                //         'textarea[name="ds_request_fulfilment"]',
+                //         'Criar Conta e Atribuir Acesso ao Manage Engine - \n' +
+                //         nome_usuario);
+
+                //     await page.click('button[type="submit"]');
+                // }
 
                 else if (i == 2 && criar_SGS) {
                     await page.goto("https://f3-1st.ampro-sd.com/am-sys/categorize-request-fulfilment");
@@ -242,7 +244,6 @@ module.exports.criaUsuario = function (application, req, res) {
                 - E-mail Blossom: ${email_blossom}
                 - Telefone para recuperação: ${telefone}
                 - Limite de destinatários no envio de e-mail: 15
-                - Grupos do Manage Engine: ${grupos_mge}
                 - Licenças: ${licenca_microsoft} ${outros_softwares != "Não" ? ", '" + outros_softwares + "'" : ""}
                 - Usuário iniciará dia: ${data_ativacao}
                 
